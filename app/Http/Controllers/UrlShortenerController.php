@@ -16,9 +16,7 @@ class UrlShortenerController extends Controller
 
         if ($user->role === 'Admin') {
             $query->where('company_id', $user->company_id);
-        }
-
-        elseif ($user->role === 'Member') {
+        } elseif ($user->role === 'Member') {
             $query->where('created_by', $user->id);
         }
 
@@ -39,7 +37,10 @@ class UrlShortenerController extends Controller
             'long_url' => 'required|url'
         ]);
 
-        $code = Str::random(6);
+        do {
+            $code = Str::random(6);
+            $exists = UrlShortener::where('short_url', $code)->exists();
+        } while ($exists);
 
         UrlShortener::create([
             'company_id' => Auth::user()->company_id,
@@ -51,6 +52,7 @@ class UrlShortenerController extends Controller
 
         return redirect()->route('dashboard.index')->with('success', 'Short URL created');
     }
+
 
     public function redirect($code)
     {

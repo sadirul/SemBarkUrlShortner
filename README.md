@@ -54,6 +54,14 @@ App URL:
 http://127.0.0.1:8000
 ```
 
+LIVE URL:
+```
+https://url.sadirul.in
+
+Email: superadmin@example.com
+Password: 1234567890
+```
+
 ## Features
 - URL shortening  
 - Click analytics  
