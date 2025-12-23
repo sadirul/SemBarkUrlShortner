@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportCsv;
 use App\Http\Controllers\UrlShortenerController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RoleMiddleware;
@@ -17,6 +18,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/export/csv', [ExportCsv::class, 'index'])->name('export.index');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware(RoleMiddleware::class . ':SuperAdmin')->group(function () {

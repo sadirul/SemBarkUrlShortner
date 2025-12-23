@@ -4,6 +4,8 @@
 
 @section('content')
     @include('alert.alert')
+    <a href="{{ route('export.index') }}">Export to CSV</a>
+    <br><br>
     <table border="1" cellpadding="6">
         <tr>
             <th>ID</th>
